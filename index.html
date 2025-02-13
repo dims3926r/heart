@@ -27,36 +27,37 @@
         }
 
         .heart {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            background-color: red;
-            transform: rotate(45deg);
-            transition: transform 0.6s ease-in-out;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    position: relative;
+    width: 450px; /* Було 400px */
+    height: 450px; /* Було 400px */
+    background-color: red;
+    transform: rotate(45deg);
+    transition: transform 0.6s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .heart:before,
-        .heart:after {
-            content: "";
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background-color: red;
-            border-radius: 50%;
-        }
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    width: 450px; /* Було 400px */
+    height: 450px; /* Було 400px */
+    background-color: red;
+    border-radius: 50%;
+}
 
-        .heart:before {
-            top: -200px;
-            left: 0;
-        }
+.heart:before {
+    top: -225px; /* Було -200px */
+    left: 0;
+}
 
-        .heart:after {
-            left: -200px;
-            top: 0;
-        }
+.heart:after {
+    left: -225px; /* Було -200px */
+    top: 0;
+}
+
 
         .heart.flipped {
             transform: rotateY(180deg) rotate(45deg);
