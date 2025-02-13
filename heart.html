@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Серце</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            margin: 0;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .heart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 800px;
+            height: 800px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .heart {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: red;
+            transform: rotate(45deg);
+            transition: transform 0.6s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -200px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: -200px;
+            top: 0;
+        }
+
+        .heart.flipped {
+            transform: rotateY(180deg) rotate(45deg);
+        }
+
+        .hello-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease-in-out;
+            white-space: nowrap; /* Зробимо текст в один рядок */
+        }
+
+        .show-text {
+            opacity: 1;
+        }
+
+        .afro-text {
+            position: fixed;
+            top: calc(50% + 95px); /* на 95px нижче, ніж текст "Hello" */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 22px; /* шрифт 22px */
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease-in-out;
+            text-align: center;
+            text-transform: uppercase; /* великими літерами */
+        }
+
+        .show-afro {
+            opacity: 1;
+        }
+
+        .valentine-text {
+            position: fixed;
+            top: calc(50% - 130px); /* підняли текст на ще 30px */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 22px; /* шрифт 22px */
+            color: white;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s ease-in-out;
+            text-align: center;
+            white-space: pre-line; /* дозволяє переносити текст на нові рядки */
+        }
+
+        .show-valentine {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-container" onclick="toggleHeart()">
+        <div class="heart"></div>
+    </div>
+
+    <div class="hello-text" id="helloText">ЛЕНА ТИ ПРЕКРАСНА</div>
+    <div class="afro-text" id="afroText">МОЇ ФІРМОВІ:<br><br>АФРОДІТОЧКА<br>КВІТОЧКА<br>МАНЮНЯ</div>
+    <div class="valentine-text" id="valentineText">Ти моя найкраща Валентинка! 🌸<br>Я тебе дуже-дуже люблю, як шоколадку і як все на світі.<br>Бажаю тобі багато радості, обіймашок і щоб у тебе завжди був гарний настрій!</div>
+
+    <script>
+        function toggleHeart() {
+            const heart = document.querySelector(".heart");
+            const helloText = document.getElementById("helloText");
+            const afroText = document.getElementById("afroText");
+            const valentineText = document.getElementById("valentineText");
+
+            // Якщо серце перевертається, спочатку зникає текст
+            if (heart.classList.contains("flipped")) {
+                helloText.classList.remove("show-text");
+                afroText.classList.remove("show-afro");
+                valentineText.classList.remove("show-valentine");
+
+                // Дочекаємося приховування тексту (1 секунда)
+                setTimeout(() => {
+                    heart.classList.remove("flipped");
+                }, 1000); // Повертаємо серце назад після 1 секунди
+            } else {
+                // Якщо серце не перевернуто, спочатку обертаємо серце
+                heart.classList.add("flipped");
+
+                // Чекаємо 600 мс для завершення анімації перевертання, потім показуємо текст
+                setTimeout(() => {
+                    helloText.classList.add("show-text");
+                    afroText.classList.add("show-afro");
+                    valentineText.classList.add("show-valentine");
+                }, 600); // Текст з'являється після 600 мс
+            }
+        }
+    </script>
+</body>
+</html>
